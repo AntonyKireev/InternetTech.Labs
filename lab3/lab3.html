@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>3lab</title>
+</head>
+<body>
+
+  <div id="container">
+
+    <input type="number" id="borderInput" placeholder="Enter Border..."/>
+
+    <button id="btn">Apply</button>
+
+    <div class="img" class="img">
+      <img id="image" src=""/>
+    </div>
+
+    <select id="GunList">
+
+        <option value="img/Null_Image.png">No Gun</option>
+        <option value="img/PM_image.png">PM</option> 
+        <option value="img/AKM_image.png">AKM</option>
+        <option value="img/RPK_image.png">RPK</option>
+
+    </select>
+  </div>
+
+<script type="text/javascript">
+
+  function setGun() {
+    var img = document.getElementById("image");
+    img.src = this.value;
+    return false;
+  }
+
+  document.getElementById("GunList").onchange = setGun;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("image").src = document.getElementById("GunList").value;
+  })
+
+</script>
+
+<script type="text/javascript">
+  var p = document.querySelector('.img');
+
+    p.addEventListener('click', function init() {
+      p.removeEventListener('click', init, false);
+      p.className = p.className + ' resizable';
+      var resizer = document.createElement('div');
+      resizer.className = 'resizer';
+      p.appendChild(resizer);
+      resizer.addEventListener('mousedown', initDrag, false);
+    }, false);
+
+    var startX, startY, startWidth, startHeight;
+
+    function initDrag(e) {
+      startX = e.clientX;
+      startY = e.clientY;
+      startWidth = parseInt(document.defaultView.getComputedStyle(p).width, 10);
+      startHeight = parseInt(document.defaultView.getComputedStyle(p).height, 10);
+      document.documentElement.addEventListener('mousemove', doDrag, false);
+      document.documentElement.addEventListener('mouseup', stopDrag, false);
+    }
+
+    function doDrag(e) {
+      p.style.width = (startWidth + e.clientX - startX) + 'px';
+      p.style.height = (startHeight + e.clientY - startY) + 'px';
+    }
+
+    function stopDrag(e) {
+      document.documentElement.removeEventListener('mousemove', doDrag, false); document.documentElement.removeEventListener('mouseup', stopDrag, false);
+    }
+</script>
+
+<script type="text/javascript">
+  const input = document.getElementById('borderInput');
+  const btn = document.getElementById('btn');
+  const img = document.querySelector('.img');
+
+  btn.addEventListener('click', () => {
+    img.style.borderWidth = input.value + 'px';
+  })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+#container {
+  display: inline-block;
+}
+
+.img {
+  cursor: pointer;
+  border: 10px solid grey;
+  width: 700px;
+  height: 500px;
+  user-select: none;  
+}
+.img.resizable { 
+  position: relative; 
+}
+.img .resizer { 
+  width: 10px; 
+  height: 10px; 
+  background: blue; 
+  position:absolute; 
+  right: 0; 
+  bottom: 0; 
+  cursor: se-resize; 
+}
+
+.img img {
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+  pointer-events: none;
+}
